@@ -1,16 +1,21 @@
-# Fishing OS v0.1.1
+# Fishing OS v0.2.0
 
-Installierbare Offline-Web-App (PWA) für das private Fangbuch.
+Offline-first PWA für iPhone.
 
-## Neu in v0.1.1
-- GPS bereits beim Anlegen eines Gewässers oder Spots
+## Neu
+- helles Dashboard und integriertes Fishing-OS-Symbol
+- Gewässer mit manuellen oder GPS-Koordinaten, mehreren Fotos und Notizen
+- Spots mit automatischer dauerhafter Nummer, optionalem Namen, mehreren Fotos, Notizen und Löschfunktion
+- schematische Offline-Karte mit allen gespeicherten GPS-Punkten
+- Angeltage mit mehreren Gewässern und mehreren Zeitblöcken
+- manueller Spotwechsel; folgende Ereignisse übernehmen den aktiven Spot
+- Fang, Biss, Nachläufer und Beobachtung
 - Fischarten-Auswahl: Schwarzbarsch, Zander, Barsch, Hecht
-- Fotoaufnahme oder Auswahl aus der Fotomediathek
-- Köder-Auswahl mit Chatterbait an erster Stelle
-- optionale Köderfarbe und Ködergewicht
-- anklickbare Highlights als Schnellzugriffe
-- austauschbares Titelbild auf der Übersicht
-- neues Blackbass-App-Icon
+- Köder-Auswahl mit Chatterbait zuerst; Farbe und Gewicht optional
+- Ereignisse nachträglich vollständig bearbeitbar
+- Gewässer-Labor: Beobachtung, Hypothese, Experiment, Erkenntnis
+- Statistik: Angeltage, Fänge, Bisse, Nachläufer, Aktivität nach Uhrzeit, Gewässer, Fischarten und Köder
+- JSON Export/Import
 
-## Update
-Den Inhalt dieses Ordners direkt in das Stammverzeichnis des GitHub-Repositories hochladen und vorhandene Dateien ersetzen. Danach die Web-App auf dem iPhone einmal vollständig schließen und neu öffnen. Falls noch die alte Version erscheint: Safari-Seite neu laden oder das Home-Bildschirm-Symbol einmal löschen und neu hinzufügen.
+## Kartenhinweis
+Die Offline-Karte zeigt deine eigenen gespeicherten Punkte als schematische Orientierung. Sie ist absichtlich keine vollständige Straßen- oder Satellitenkarte. Eine echte herunterladbare Kartenbasis ist ein separater Entwicklungsschritt.
