@@ -1,26 +1,16 @@
-# Fishing OS v0.1.0
+# Fishing OS v0.1.1
 
-Installierbare Offline-first Web-App (PWA) für iPhone.
+Installierbare Offline-Web-App (PWA) für das private Fangbuch.
 
-## Funktionen
-- Übersicht mit echten Kennzahlen
-- Gewässerverwaltung
-- GPS-Spots und Weiterleitung zu Apple Karten
-- Fangbuch mit Foto, Länge, Gewicht, Köder und Notizen
-- Tagebuch
-- Statistik und Hall of Fame
-- lokale Speicherung in IndexedDB
-- JSON-Export und -Import
-- Offline-App-Shell per Service Worker
+## Neu in v0.1.1
+- GPS bereits beim Anlegen eines Gewässers oder Spots
+- Fischarten-Auswahl: Schwarzbarsch, Zander, Barsch, Hecht
+- Fotoaufnahme oder Auswahl aus der Fotomediathek
+- Köder-Auswahl mit Chatterbait an erster Stelle
+- optionale Köderfarbe und Ködergewicht
+- anklickbare Highlights als Schnellzugriffe
+- austauschbares Titelbild auf der Übersicht
+- neues Blackbass-App-Icon
 
-## GitHub Pages
-1. Dateien in die Wurzel des Repositorys kopieren.
-2. GitHub: Settings → Pages.
-3. Source: Deploy from a branch.
-4. Branch: main, Folder: /(root).
-5. Speichern und die veröffentlichte URL öffnen.
-
-## iPhone Installation
-Safari → Teilen → Zum Home-Bildschirm.
-
-Hinweis: Die persönlichen Daten liegen lokal im Browser des jeweiligen Geräts. Regelmäßig über „Datensicherung exportieren“ sichern.
+## Update
+Den Inhalt dieses Ordners direkt in das Stammverzeichnis des GitHub-Repositories hochladen und vorhandene Dateien ersetzen. Danach die Web-App auf dem iPhone einmal vollständig schließen und neu öffnen. Falls noch die alte Version erscheint: Safari-Seite neu laden oder das Home-Bildschirm-Symbol einmal löschen und neu hinzufügen.
