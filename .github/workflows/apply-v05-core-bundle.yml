@@ -2,7 +2,9 @@ name: Apply v0.5 core bundle
 on:
   push:
     branches: [update/v0.5-workflow]
-    paths: [scripts/apply_v05_core_bundle.py]
+    paths:
+      - scripts/apply_v05_core_bundle.py
+      - .github/workflows/apply-v05-core-bundle.yml
 permissions:
   contents: write
 jobs:
