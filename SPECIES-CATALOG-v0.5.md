@@ -13,21 +13,25 @@ Pro Art vorgesehen:
 - alternative/lokale Namen (optional)
 - Bild/Icon
 - Kategorie Süßwasser/Salzwasser
-- Regionen
+- Länder/Regionen
 - aktiv/inaktiv
 - optionale Notiz
 
-## Startset Gran Canaria – Süßwasser
+## Startset Spanien – Süßwasser
+
+Die Spanien-Zuordnung wird bewusst landesweit gedacht und ist nicht nur auf Gran Canaria begrenzt. Damit bleibt das Startset auch für spätere Reisen bzw. Gewässer auf dem spanischen Festland (z. B. Ebro) nutzbar.
 
 - Schwarzbarsch / Black Bass
 - Tilapia
 - Sonnenbarsch (genaue Artbezeichnung erst nach sicherer Bestimmung festlegen)
 - Karpfen
 - Wels / Katzenwels
+- Barsch
+- Zander
 
-Hinweis: Die Artenbibliothek darf später erweitert werden; Meer-/Küstenarten werden separat ergänzt, wenn Fishing OS dafür genutzt wird.
+Hinweis: Nicht jede Art kommt an jedem spanischen Gewässer vor. Das konkrete Gewässer priorisiert nur die dort relevanten Arten. Meer-/Küstenarten werden separat ergänzt, wenn Fishing OS dafür genutzt wird.
 
-## Startset Deutschland / Heimat
+## Startset Deutschland – Süßwasser
 
 - Hecht
 - Zander
@@ -47,6 +51,13 @@ Hinweis: Die Artenbibliothek darf später erweitert werden; Meer-/Küstenarten w
 - Kleine Artbilder/Icons dürfen in der Auswahl erscheinen, sofern sie einheitlich und gut erkennbar sind.
 - Arten können später hinzugefügt, deaktiviert und in ihrer Darstellung bearbeitet werden.
 - Eine Art darf nicht einfach gelöscht werden, solange Fänge auf sie verweisen; stattdessen deaktivieren oder sicher migrieren.
+- Länderzuordnung dient nur als sinnvolle Vorauswahl; maßgeblich ist immer die konkrete Artenliste des Gewässers.
+
+## Bildregeln
+
+- Jede Art erhält möglichst ein einheitliches, gut erkennbares Vorschaubild.
+- Bilddarstellung soll anatomisch plausibel und eindeutig sein; unklare/fehlerhafte Darstellungen werden ersetzt.
+- Der Zander wird im finalen Bildset mit einer klar erkennbaren, realistischen Silhouette/Darstellung geführt.
 
 ## Datenqualität
 
