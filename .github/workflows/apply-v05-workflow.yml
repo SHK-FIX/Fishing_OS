@@ -1,0 +1,36 @@
+name: Apply v0.5 spot workflow
+
+on:
+  push:
+    branches:
+      - update/v0.5-workflow
+    paths:
+      - scripts/apply_v05_workflow.py
+      - .github/workflows/apply-v05-workflow.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: update/v0.5-workflow
+
+      - name: Apply guarded migration
+        run: python scripts/apply_v05_workflow.py
+
+      - name: Commit generated changes
+        run: |
+          git config user.name "Fishing OS Update Bot"
+          git config user.email "actions@users.noreply.github.com"
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git add index.html archive/v0.4-field-test/index.html
+          git commit -m "Fishing OS v0.5 dev1: explicit spot start and end workflow"
+          git push
