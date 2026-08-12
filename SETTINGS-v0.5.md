@@ -60,12 +60,12 @@ Offline-Kartenverwaltung kann als eigener Unterpunkt vorgesehen werden, soweit d
 ## Wetter
 
 Unterseite für:
-- automatische Wettererfassung
-- manuelles Aktualisieren
+- automatische Wettererfassung an Spot-/Session-Grenzen
+- manuelles Aktualisieren bei Ereignissen
 - Verhalten bei fehlender Internetverbindung
-- spätere Synchronisierung / Nachziehen, soweit technisch möglich
+- spätere Kennzeichnung nachgezogener Wetterdaten
 
-Die globale Einstellung darf die bereits definierte Möglichkeit zum manuellen „Wetter aktualisieren“ an relevanten Einträgen nicht entfernen.
+Die globale Einstellung darf die bereits definierte Möglichkeit zum manuellen „Wetter aktualisieren“ an relevanten Einträgen nicht entfernen. Details siehe `WEATHER-SYSTEM-v0.5.md`.
 
 ## Daten & Backup
 
@@ -125,7 +125,8 @@ Grundregel: Vorschläge werden niemals automatisch zu Fakten. Der Nutzer bestät
 - App-Version
 - Informationen
 - ggf. Diagnose-/Datenstatus
-- Zurücksetzen nur mit klarer Warnung und Schutz vor versehentlichem Datenverlust
+
+**Eine globale Funktion „App zurücksetzen“ wird nicht angeboten.** Daten werden gezielt bearbeitet, in den Papierkorb verschoben oder bewusst über Datenverwaltung behandelt. Dadurch gibt es keinen leicht erreichbaren Knopf, der das persönliche Angelarchiv gefährden könnte.
 
 ## Profil
 
