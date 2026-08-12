@@ -1,7 +1,7 @@
 # Fishing OS v0.5 – Design Freeze / Master-Index
 
-Stand: 12.08.2026
-Status: nach Gesamtcheck aktualisiert
+Stand: 13.08.2026
+Status: **FREIGEGEBEN / FEATURE FREEZE**
 
 Diese Datei ist der zentrale Index der freigegebenen v0.5-Produkt- und UX-Entscheidungen. Detailregeln liegen in den verlinkten Spezifikationen und haben bei Konflikten Vorrang.
 
@@ -58,6 +58,8 @@ Freigegebene UX siehe `LIVE-MODE-v0.5.md`.
 
 Finales Zeitmodell für mehrere Gewässer und Übergänge ohne aktiven Spot siehe `SESSION-SPOT-TRANSITIONS-v0.5.md` und `DATA-MODEL-v0.5.md`.
 
+Ein Kalendertag bleibt ein Angeltag, auch wenn mehrere Gewässer besucht werden. Intern werden dafür getrennte Gewässer-Sessions geführt.
+
 ## Wetter
 
 Finale Wetterlogik siehe `WEATHER-SYSTEM-v0.5.md`.
@@ -78,6 +80,7 @@ Grundsatz:
 - Bottom Sheet / Schnellaktionen
 - Spot-Relevanz nur datenbasiert
 - Ufer und Boot gleichermaßen berücksichtigt
+- zwischen zwei Spot-Aufenthalten darf ausdrücklich kein Spot aktiv sein
 
 Details:
 - `MAP-SPOT-ACTIONS-v0.5.md`
@@ -95,7 +98,8 @@ Gewässer sind lebende Wissensdatensätze mit Spots, Ereignissen, Statistik, Ana
 ## Fänge
 
 - Fangmaske: Wetter oben, Fischart, Länge, Gewicht, Köder/Technik optional, großes Foto, Notiz.
-- Schnellfang darf ohne Detailpflichtfelder gespeichert werden; Spot wird bei Bedarf direkt minimal angelegt.
+- Schnellfang darf ohne Detailpflichtfelder gespeichert werden.
+- Ist noch kein Spot angelegt, muss direkt aus der Schnellmaske ein minimaler Spot angelegt werden können; fehlende Details werden später ergänzt.
 - historische Fänge siehe `HISTORICAL-ENTRY-v0.5.md`.
 - Fangarchiv siehe `CATCH-ARCHIVE-v0.5.md`.
 
@@ -145,6 +149,8 @@ Systemweite Bearbeiten-Logik siehe `EDITING-SYSTEM-v0.5.md`.
 
 Globale reversible Löschregel siehe `TRASH-RECOVERY-v0.5.md`.
 
+**Archivieren und Löschen sind getrennte Zustände:** Archivieren blendet einen weiterhin gültigen Datensatz aus aktiven Auswahllisten aus; Löschen verschiebt ihn in den Papierkorb. Endgültiges Löschen erfolgt nur bewusst im Papierkorb.
+
 ## Kamera & Medien
 
 Finale Medien-/Kamera-Regeln siehe `MEDIA-CAMERA-v0.5.md`.
@@ -153,7 +159,7 @@ Finale Medien-/Kamera-Regeln siehe `MEDIA-CAMERA-v0.5.md`.
 
 Minimalistische Hauptseite + tiefe Unterseiten siehe `SETTINGS-v0.5.md`.
 
-Eine globale „App zurücksetzen“-Funktion ist gestrichen.
+Eine globale „App zurücksetzen“-Funktion existiert nicht.
 
 ## Import / Export / Backup
 
@@ -165,14 +171,30 @@ Vollständige Backups erhalten stabile IDs, Beziehungen, Medien, Papierkorb und 
 
 Verbindliche Entity- und Zeitmodell-Grundlage siehe `DATA-MODEL-v0.5.md`.
 
+Zeitwerte werden mit iPhone-Zeit sowie ursprünglicher lokaler Zeitzone gespeichert.
+
 ## Angeltag-Detail / Tagesbericht
 
 Siehe `ANGLER-DAY-DETAIL-v0.5.md`.
 
-## Feature Freeze
+## Verbindlicher Feature Freeze
 
-Nach Abschluss der noch notwendigen Dokument-Synchronisierung gilt:
+**Fishing OS v0.5 ist inhaltlich freigegeben.**
 
-**Keine neuen v0.5-Funktionen ohne echte Produktlücke.**
+Ab diesem Stand gilt:
+- keine neuen Komfortfunktionen oder Feature-Ideen mehr für v0.5
+- neue Ideen wandern in einen späteren Backlog
+- Ausnahme nur bei einer echten Produkt-, Datenintegritäts-, Sicherheits- oder technischen Blockerlücke, die für die korrekte Umsetzung von v0.5 geschlossen werden muss
+- bestehende freigegebene Funktionen werden beim Implementieren nicht stillschweigend entfernt oder grundlegend verändert
+- technische Detailentscheidungen dürfen während der Umsetzung getroffen werden, solange sie die freigegebenen Produktregeln nicht verändern
 
-Nächster Entwicklungsschritt ist die technische Umsetzung und Migration, nicht weitere Feature-Sammlung.
+## Nächster Schritt
+
+1. ältere Einzelspezifikationen gegen die finalen Vorrangregeln synchronisieren
+2. technische SwiftUI-/Persistenzarchitektur und Migration aus v0.4 vorbereiten
+3. MVP-Implementierungsreihenfolge festlegen
+4. implementieren
+5. auf echtem iPhone mit realen Angeltagen testen
+6. erst nach Datenintegritäts-, Import-/Export- und Feldtest Freigabe nach `main`
+
+**Planungsphase beendet. Ab jetzt wird gebaut.**
