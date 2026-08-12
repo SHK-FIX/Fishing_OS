@@ -2,7 +2,9 @@ name: Apply v0.5 editing
 on:
   push:
     branches: [update/v0.5-workflow]
-    paths: [scripts/apply_v05_editing.py]
+    paths:
+      - scripts/apply_v05_event_weight.py
+      - .github/workflows/apply-v05-editing.yml
 permissions:
   contents: write
 jobs:
@@ -12,13 +14,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: update/v0.5-workflow
-      - name: Apply guarded patch
-        run: python3 scripts/apply_v05_editing.py
+      - name: Apply guarded event weight patch
+        run: python3 scripts/apply_v05_event_weight.py
       - name: Sanity checks
         run: |
-          grep -q "function dayEditForm" index.html
-          grep -q "function spotSessionEditForm" index.html
-          grep -q "antippen zum Korrigieren" index.html
+          grep -q "function weightMetric" index.html
+          grep -q "Gewicht lbs" index.html
+          grep -q "weightLb" index.html
+          grep -q "weightKg" index.html
       - name: Commit only if changed
         run: |
           git config user.name "github-actions[bot]"
@@ -27,6 +30,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes"
           else
-            git commit -m "Add safe editing for days and spot sessions"
+            git commit -m "Add catch weight and safer event editing"
             git push origin update/v0.5-workflow
           fi
