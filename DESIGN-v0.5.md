@@ -1,250 +1,178 @@
-# Fishing OS v0.5 – freigegebene Designrichtung
+# Fishing OS v0.5 – Design Freeze / Master-Index
 
 Stand: 12.08.2026
+Status: nach Gesamtcheck aktualisiert
 
-Diese Datei hält die gemeinsam freigegebenen UI/UX-Entscheidungen für Fishing OS v0.5 fest. Ziel ist, die bereits bestätigten Screens und Regeln nicht bei späteren Arbeiten versehentlich wieder umzubauen.
+Diese Datei ist der zentrale Index der freigegebenen v0.5-Produkt- und UX-Entscheidungen. Detailregeln liegen in den verlinkten Spezifikationen und haben bei Konflikten Vorrang.
 
 ## Grundprinzipien
 
-- Zielplattform zuerst iPhone.
-- Helle Oberfläche für bessere Ablesbarkeit draußen und in direkter Sonne.
-- Hochwertig, modern, klar und eigenständig; Apple-inspiriert, aber nicht steril.
-- Originales Fishing-OS-Logo bleibt sichtbar und Teil der Designsprache.
-- Mobile First: schnelle Bedienung, große Tap-Flächen, wenig unnötiger Text.
-- Karte und Angeltag sind zentrale Elemente der App.
-- Bestehende Funktionen und Datenlogik werden bei der visuellen Umsetzung nicht leichtfertig verändert.
-- Offline-first und private Spots bleiben unverändert Kernprinzipien.
-- Alle vom Nutzer erfassten Daten müssen nachträglich bearbeitbar sein.
+- Zielplattform zuerst iPhone / SwiftUI.
+- v0.4/PWA bleibt stabile Referenz und Migrationsquelle, nicht langfristige Zielarchitektur.
+- helles, hochwertiges, Apple-inspiriertes Mobile-First-Design.
+- Offline-first.
+- private Spots / keine automatische Veröffentlichung.
+- alle Nutzerdaten nachträglich bearbeitbar.
+- normales Löschen = Papierkorb / Wiederherstellung.
+- Schnellereignisse dürfen das Angeln nicht unterbrechen.
+- Vorschläge sind keine Fakten.
+- Statistik zeigt Muster ohne Scheingenauigkeit oder unbelegte Kausalität.
 
-## UX-Grundregel für Schnellereignisse
+## Dashboard / Übersicht
 
-Für Biss, Im Drill verloren, Nachläufer, Beobachtung und Köderverlust gilt:
+Freigegeben:
+- Highlights oben
+- große Karten-/Angeltag-Fläche
+- Schnellereignisse
+- aktiver Angeltag / letzte Ereignisse
+- Originales Fishing-OS-Logo bleibt Teil der Designsprache
 
-- Alles, was nicht automatisch ermittelt werden kann, ist optional.
-- Kein Detailfeld darf den Nutzer am Wasser am schnellen Speichern hindern.
-- Automatisch vorbelegt werden, soweit verfügbar: Datum, Uhrzeit, aktiver Angeltag, Gewässer, aktueller Spot, GPS und Wetter-Snapshot.
-- Fischart, Köder/Setup, Technik, Tiefe, Biss-/Ereignisdetails, Foto, Notiz und weitere Zusatzinformationen können sofort oder später ergänzt werden.
-- Minimalziel: Schnellereignis öffnen → Speichern → sofort weiterangeln.
-- Alle Angaben bleiben nachträglich vollständig bearbeitbar.
-- Automatisch erfasste Originaldaten sollen bei späteren Korrekturen nachvollziehbar bleiben, damit Analysen nicht unbemerkt verfälscht werden.
+## Globale Navigation
 
-## Dashboard – freigegebene Struktur
+Finale Hierarchie siehe `NAVIGATION-v0.5.md`.
 
-Die bisherige Überschrift „Guten Tag / Dashboard“ entfällt vollständig.
+Haupttabs:
+1. Übersicht
+2. Gewässer
+3. Karte
+4. Fänge
+5. Mehr
 
-Reihenfolge:
-1. Highlights ganz oben.
-2. Große, dominante Karten-/Angeltag-Fläche.
-3. Schnelleinträge.
-4. Danach aktiver Angeltag / letzte Ereignisse / weitere Inhalte nach Bedarf.
+## Schnellereignisse
 
-### Highlights
+Finale Pflichtfeld- und Sofort-Spot-Regeln siehe `QUICK-CAPTURE-RULES-v0.5.md`.
 
-Die Highlights gelten als final und werden nicht mehr umgestaltet:
-- Fang: Kescher-Symbol.
-- Gewässer: freigegebenes Gewässer-Symbol.
-- Spots: freigegebenes Spot-Symbol.
-- Fotos: Kamera-Symbol.
+Ereignisse:
+- Fang
+- Biss
+- Im Drill verloren
+- Nachläufer
+- Beobachtung
+- Köderverlust
 
-Die Highlights bleiben als kompakte Reihe mit Anzahl und Beschriftung bestehen.
+Detailworkflows siehe `EVENT-WORKFLOWS-v0.5.md`.
 
-### Schnelleinträge
+## Angeltag / Live-Modus
 
-Grundstruktur: sechs kompakte Einträge in zwei Reihen.
+Freigegebene UX siehe `LIVE-MODE-v0.5.md`.
 
-Vorläufig bestätigte Symbolrichtung:
-- Fang: Kescher.
-- Biss: fischbezogenes Symbol; aktueller Entwurf akzeptiert, später bei Bedarf feinjustierbar.
-- Drill: gebogene Baitcaster-Rute; bleibt.
-- Nachläufer: Fisch/Nachläufer-Symbol; bleibt.
-- Beobachtung: Fernglas.
-- Köderverlust: deutlich erkennbares Verlust-/Abriss-Symbol; aktueller Stand bleibt zunächst.
+Finales Zeitmodell für mehrere Gewässer und Übergänge ohne aktiven Spot siehe `SESSION-SPOT-TRANSITIONS-v0.5.md` und `DATA-MODEL-v0.5.md`.
 
-Die Symbolsprache soll klar und aussagekräftig sein, nicht verspielt.
+## Wetter
 
-## Fang erfassen – freigegeben
+Finale Wetterlogik siehe `WEATHER-SYSTEM-v0.5.md`.
 
-Die Fangmaske gilt als freigegeben.
+Grundsatz:
+- automatisch an Spot-/Session-Grenzen
+- Ereignisse übernehmen letzten gültigen Snapshot
+- manuelles Wetter-Update bei relevanten Änderungen
+- keine erfundenen Offline-/Historienwerte
 
-Reihenfolge:
-1. Kopf „Fang erfassen“.
-2. Gewässer / Spot / Uhrzeit.
-3. Wetterblock ganz oben mit manuellem „Wetter aktualisieren“.
-4. Fischart als Dropdown, gern mit kleinem Fischbild/Icon.
-5. Länge untereinander.
-6. Gewicht untereinander; bevorzugte Eingabe lbs, automatische metrische Anzeige darunter.
-7. Köder sichtbar.
-8. Optimale/verwendete Technik sichtbar.
-9. Foto groß und prominent.
-10. Notiz.
-11. Großer „Fang speichern“-Button.
+## Karte & Spots
 
-Wetter ist bewusst weit oben, weil die manuelle Aktualisierung sich in der Praxis bewährt hat und nicht versteckt werden darf.
+- Karte / Hybrid / Satellit
+- aktueller Standort sichtbar
+- kein permanentes Auto-Recenter
+- unbegrenzte Spots
+- Clustering
+- Bottom Sheet / Schnellaktionen
+- Spot-Relevanz nur datenbasiert
+- Ufer und Boot gleichermaßen berücksichtigt
 
-## Biss erfassen – freigegeben
+Details:
+- `MAP-SPOT-ACTIONS-v0.5.md`
+- `SPOT-DETAIL-v0.5.md`
 
-Der helle iPhone-Entwurf ist freigegeben.
+Echolot bleibt Zukunftsidee und ist nicht Teil von v0.5.
 
-Struktur:
-- Wetter-Snapshot oben, inklusive manuellem „Wetter aktualisieren“.
-- Gewässer und Spot.
-- Datum und Uhrzeit automatisch vorbelegt, aber korrigierbar.
-- Fischart optional.
-- Bissdetails optional.
-- Köder oder komplettes Tackle-Setup optional auswählbar.
-- Notiz und Foto optional.
-- großer Speichern-Button.
+## Gewässer
 
-### Bissart
+- `WATER-ARCHIVE-v0.5.md`
+- `WATER-DETAIL-v0.5.md`
 
-Optionaler Ein-Tap-Wert für spätere Analyse, z. B.:
-- hart / eindeutig,
-- vorsichtig,
-- kurzer Kontakt,
-- Fehlbiss,
-- unbekannt.
+Gewässer sind lebende Wissensdatensätze mit Spots, Ereignissen, Statistik, Analyse und Labor.
 
-Die Bissart ist niemals Pflicht.
+## Fänge
 
-### Minimaler Biss-Workflow
+- Fangmaske: Wetter oben, Fischart, Länge, Gewicht, Köder/Technik optional, großes Foto, Notiz.
+- Schnellfang darf ohne Detailpflichtfelder gespeichert werden; Spot wird bei Bedarf direkt minimal angelegt.
+- historische Fänge siehe `HISTORICAL-ENTRY-v0.5.md`.
+- Fangarchiv siehe `CATCH-ARCHIVE-v0.5.md`.
 
-Im Extremfall genügt: **Biss öffnen → Speichern → weiterangeln.**
+## Fischarten
 
-Wenn Zeit vorhanden ist, können Gewässer/Spot, Köder/Setup, Fischart, Bissart, Tiefe, Foto und Notiz sofort ergänzt werden. Andernfalls erfolgt die Nachbearbeitung später.
+- bearbeitbare Süßwasser-Bibliothek
+- Deutschland und Spanien als Startpriorisierung
+- eigene Arten jederzeit möglich
+- kein Salzwasser-Katalog in v0.5
 
-## Aktiver Angeltag – freigegeben
+Details:
+- `FISH-SPECIES-LIBRARY-v0.5.md`
+- `SPECIES-CATALOG-v0.5.md`
 
-Der helle Entwurf ist freigegeben.
+## Tackle
 
-Inhalte:
-- Gewässername und Status „läuft“.
-- Startzeit und Gesamtdauer.
-- aktueller Spot prominent.
-- Wetter kompakt sichtbar.
-- große Kartenfläche.
-- Spot-Verlauf als Timeline.
-- Ereignisse des Tages chronologisch.
-- klarer Button „Angeltag beenden“.
+Umfangreiches Tackle-System siehe `TACKLE-SYSTEM-v0.5.md`.
 
-### Kartenregel im aktiven Angeltag
+Verbindliche Modelltrennung siehe `TACKLE-MODEL-CLARIFICATION-v0.5.md`:
+- Köder = Lockmittel
+- Rig = Montage
+- Komponenten = Haken/Gewichte/Terminal Tackle usw.
+- Setup = komplette Kombination
 
-- Der aktuelle Standort des Nutzers ist immer sichtbar.
-- Genauigkeitskreis wird dargestellt, wenn verfügbar.
-- Der aktive Spot wird ebenfalls deutlich angezeigt.
-- Karte darf beim Öffnen sinnvoll auf Standort + aktiven Spot ausgerichtet sein.
-- Sobald der Nutzer die Karte selbst bewegt, darf sie nicht ständig automatisch zurückspringen.
-- „Zu meinem Standort“ bleibt als feste Aktion verfügbar.
+Naturköder gehören nicht zum Startkatalog.
 
-## Tagebuch – freigegeben
+## Statistik / Analyse / Labor
 
-Der helle Tagebuch-Entwurf ist freigegeben.
+Grundstruktur freigegeben:
+- Statistik beantwortet „Was ist passiert?“
+- Analyse untersucht Bedingungen und Zusammenhänge
+- Gewässer-Labor verwaltet Hypothesen und Beobachtungen
 
-Struktur:
-- Kalender / Datumsnavigation oben.
-- Filter für Ereignistypen.
-- kompakte Tageszusammenfassung.
-- Gewässer mit Bild, Zeitraum und Kennzahlen.
-- Spot-Verlauf sichtbar.
-- Ereignisse des Tages chronologisch.
-- Möglichkeit, Ereignisse zu öffnen / zu korrigieren.
+Einheitliche Kennzahlen siehe `METRICS-v0.5.md`.
 
-## Karte – freigegebene Richtung
+## Beobachtungen
 
-- Große dominante Kartenfläche.
-- Umschalter Satellit / Hybrid / Karte.
-- aktueller Standort immer sichtbar, optional mit Genauigkeitskreis.
-- kein permanentes Auto-Recenter während manueller Kartennutzung.
-- aktiver Spot wird stärker hervorgehoben als andere Spots.
-- Spotanzahl technisch unbegrenzt.
-- bei vielen Spots: Clustering beim Herauszoomen; beim Reinzoomen einzelne Marker.
-- Liste/Bottom Sheet unter der Karte in mehreren Höhen: eingeklappt, halb, voll geöffnet.
-- Standard-Sortierung der Spotliste: zuletzt genutzt.
-- Spot antippen öffnet Schnellaktionen, z. B. Spot starten, Details, Bearbeiten, Navigation, neuer Eintrag.
-- Filter für Spots werden vorgesehen.
+Wissenschaftlich strukturierte Feldbeobachtung mit Kategorien, Beute/Nahrungsangebot, Fotos/Videos, optionaler Hypothesenübernahme und klarer Trennung zwischen Beobachtung und Vermutung.
 
-### Spot-Relevanz
+Siehe `EVENT-WORKFLOWS-v0.5.md`.
 
-Die Karte soll langfristig Statistik und Relevanz einbeziehen.
+## Bearbeiten / Historie
 
-Relevanz kann u. a. berücksichtigen:
-- letzte Nutzung,
-- Fangzahl,
-- Bisse,
-- Drillverluste,
-- Aufenthaltsdauer,
-- Erfolgsquote,
-- größte Fische,
-- Köderverluste,
-- vorhandene Datenmenge.
+Systemweite Bearbeiten-Logik siehe `EDITING-SYSTEM-v0.5.md`.
 
-Je relevanter ein Spot, desto stärker darf er visuell hervorgehoben werden. Farben/Intensitäten müssen trotzdem ruhig und eindeutig bleiben. Der aktive Spot hat immer eine eigene, klar erkennbare Priorität.
+## Papierkorb
 
-## Statistik – freigegeben
+Globale reversible Löschregel siehe `TRASH-RECOVERY-v0.5.md`.
 
-Die klassische Statistikseite ist in ihrer Grundstruktur freigegeben.
+## Kamera & Medien
 
-Bereiche:
-- Zeitraumfilter.
-- zentrale Kennzahlen: Fänge, Bisse, Drillverluste, Beobachtungen, Köderverluste, Angelzeit.
-- Trends / Fänge pro Monat.
-- Erfolgsquote.
-- Top-Gewässer.
-- Top-Spots nach Erfolgsquote/Relevanz.
-- Top-Köder.
-- Fischartenverteilung.
-- persönliche Bestleistungen.
+Finale Medien-/Kamera-Regeln siehe `MEDIA-CAMERA-v0.5.md`.
 
-Die Statistik soll schnell verständlich bleiben und die Frage beantworten: „Was ist passiert?“
+## Einstellungen
 
-## Analyse / Gewässer-Labor – freigegeben
+Minimalistische Hauptseite + tiefe Unterseiten siehe `SETTINGS-v0.5.md`.
 
-Zusätzlich zur klassischen Statistik gibt es eine zweite, tiefere Ebene „Analyse“.
+Eine globale „App zurücksetzen“-Funktion ist gestrichen.
 
-Sie beantwortet stärker die Frage: „Warum ist etwas passiert?“
+## Import / Export / Backup
 
-Freigegebene Inhaltsrichtung:
-- beste Bedingungen,
-- Wind & Erfolg,
-- Luftdruck & Erfolg,
-- Temperaturbereiche,
-- Tageszeiten-Muster,
-- Mondphase,
-- Top-Spots unter bestimmten Bedingungen,
-- Köder-Performance unter Bedingungen,
-- Fischverhalten / Aktivitätsmuster,
-- erkennbare Zusammenhänge und Auffälligkeiten.
+Siehe `IMPORT-EXPORT-BACKUP-v0.5.md`.
 
-### Gewässer-Labor
+Vollständige Backups erhalten stabile IDs, Beziehungen, Medien, Papierkorb und Schema-Versionen.
 
-Das Gewässer-Labor bleibt als eigener Unterbereich der Analyse erhalten.
+## Kerndatenmodell
 
-Mögliche Hypothesen:
-- monotone Führung funktioniert besser,
-- bestimmte Windrichtung ist günstig,
-- Chatterbait funktioniert an flachen Spots,
-- tiefe Kanten werden bei bestimmten Druckverläufen relevanter.
+Verbindliche Entity- und Zeitmodell-Grundlage siehe `DATA-MODEL-v0.5.md`.
 
-Fishing OS soll Hypothesen später anhand realer Daten einordnen, z. B.:
-- „Spricht dafür“,
-- „Neutral“,
-- „Spricht eher dagegen“,
-- „Noch zu wenig Daten“.
+## Angeltag-Detail / Tagesbericht
 
-Keine Scheingenauigkeit: Aussagen müssen immer mit ausreichender Datenbasis und nachvollziehbaren Stichprobengrößen dargestellt werden.
+Siehe `ANGLER-DAY-DETAIL-v0.5.md`.
 
-## Noch nicht final entworfen
+## Feature Freeze
 
-Diese Bereiche werden erst nach diesem Design-Freeze weiter bearbeitet:
-- Im Drill verloren erfassen,
-- Nachläufer erfassen,
-- Beobachtung erfassen,
-- Köderverlust erfassen,
-- Spot-Detail,
-- Gewässer-Detail,
-- Bearbeiten-Masken,
-- Profil / Einstellungen,
-- weitere Detailansichten.
+Nach Abschluss der noch notwendigen Dokument-Synchronisierung gilt:
 
-## Umsetzungsregel
+**Keine neuen v0.5-Funktionen ohne echte Produktlücke.**
 
-Diese Datei ist ein Design-Freeze für die oben freigegebenen Bereiche. Spätere Implementierung auf `update/v0.5-workflow` soll sich daran orientieren. Bereits freigegebene Screens werden nur nach einer neuen gemeinsamen Designentscheidung verändert.
+Nächster Entwicklungsschritt ist die technische Umsetzung und Migration, nicht weitere Feature-Sammlung.
