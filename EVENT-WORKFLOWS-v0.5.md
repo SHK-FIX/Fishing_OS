@@ -120,6 +120,131 @@ Optional:
 
 Minimaler Workflow: **Nachläufer öffnen → Speichern → weiterangeln.** Alle Details können später ergänzt oder korrigiert werden.
 
+## Beobachtung erfassen – freigegeben
+
+Der helle, wissenschaftlich orientierte iPhone-Entwurf ist freigegeben.
+
+Beobachtungen sind in Fishing OS keine bloßen Tagebuchnotizen, sondern strukturierte Feldbeobachtungen. Ziel ist, ökologische, biologische und situative Informationen so zu erfassen, dass sie später statistisch ausgewertet und im Gewässer-Labor mit Hypothesen verknüpft werden können.
+
+### Automatisch erfasst, soweit verfügbar
+
+- Wetter-Snapshot inklusive manuellem „Wetter aktualisieren“
+- aktiver Angeltag
+- Gewässer
+- aktueller Spot
+- Datum und Uhrzeit
+- GPS
+
+### Beobachtungskategorien
+
+Vorgefertigte Kategorien sorgen für konsistente und statistisch auswertbare Daten. Mehrfachauswahl ist möglich:
+
+- Fischaktivität
+- Beute / Nahrungsangebot
+- Wasser
+- Struktur & Vegetation
+- Tierwelt
+- Angeldruck / Störung
+- Wetteränderung
+- Sonstiges
+
+Freitext bleibt zusätzlich möglich, ersetzt aber nicht die strukturierten Kategorien.
+
+### Beute / Nahrungsangebot
+
+Diese Kategorie ist ausdrücklich vorgesehen, weil sichtbares Nahrungsangebot für Köderwahl, Fischstandort und Verhaltensanalyse relevant sein kann.
+
+Vorgefertigte Auswahl, erweiterbar:
+- Beutefische / Fischbrut
+- Krebse
+- Frösche / Kaulquappen
+- Echsen
+- Insekten
+- Würmer / Wirbellose
+- sonstige Beute
+
+Zusätzliche optionale Attribute:
+- Menge / Intensität: einzeln, wenige, mehrere, viele, sehr viele
+- Position / Bereich: Oberfläche, Uferkante, Flachwasser, mittlere Tiefe, Tiefwasser, im Kraut, an Struktur, offenes Wasser, sonstiges
+- Verhalten / Aktivität: ruhig, aktiv, flüchtend, springend, Jagdverhalten, Laichverhalten, sonstiges
+
+### Weitere Beobachtungsdetails
+
+Je nach Kategorie können strukturierte Detailwerte ergänzt werden, beispielsweise:
+- Fischart
+- Menge / Intensität
+- Position / Tiefe / Bereich
+- Bewegungsrichtung
+- Verhalten
+- Reaktion auf Köder oder Angler
+- Wasserstand / Wassertrübung / auffällige Veränderungen
+- Vegetation und Struktur
+- Störung / Angeldruck
+
+Alle Detailfelder bleiben optional und vollständig nachbearbeitbar.
+
+### Notiz und wissenschaftliche Trennung
+
+Freie Notizen sind möglich. Fishing OS trennt dabei ausdrücklich zwischen **Beobachtung** und **Hypothese**.
+
+Beispiel:
+- Beobachtung: „Mehrere kleine Echsen regelmäßig direkt an der Uferkante gesehen.“
+- Hypothese: „Schwarzbarsche könnten an diesem Bereich regelmäßig Echsen als Beute nutzen.“
+
+Eine Beobachtung darf niemals automatisch als Beweis für eine Hypothese behandelt werden.
+
+### Bedeutung vermutet
+
+Optional kann markiert werden, warum die Beobachtung interessant sein könnte:
+- Nahrungsangebot
+- Fischstandort
+- Aktivität
+- Köderwahl
+- Wetterreaktion
+- unbekannt
+
+### Gewässer-Labor
+
+Optionaler Schalter: **„Als Hypothese ins Gewässer-Labor übernehmen“**.
+
+Aus einer Beobachtung kann damit bewusst eine Hypothese angelegt werden. Zukünftige Beobachtungen, Fänge, Bisse, Drillverluste und Nachläufer können später als Datenbasis zur Einordnung dienen.
+
+Mögliche Einordnung:
+- spricht dafür
+- neutral
+- spricht eher dagegen
+- noch zu wenig Daten
+
+Keine Scheingenauigkeit: Stichprobengröße und Datenqualität müssen bei jeder späteren Aussage berücksichtigt werden.
+
+### Medien
+
+Beobachtungen unterstützen:
+- Fotos
+- Videos
+- mehrere Medien pro Beobachtung
+
+Medien können sofort oder später ergänzt, entfernt oder geändert werden. Video ist insbesondere für Fischverhalten, Beutefischschwärme, Tierverhalten, Wasserbewegung und andere dynamische Beobachtungen vorgesehen.
+
+Wegen Offline-first und Speicherbedarf muss die spätere Implementierung Videos speichereffizient behandeln und unnötige Dateiduplikate vermeiden.
+
+### Statistik und Analyse
+
+Strukturierte Beobachtungen können später u. a. ausgewertet werden nach:
+- Häufigkeit bestimmter Beobachtungen
+- Saison / Jahreszeit
+- Gewässer und Spot
+- Tageszeit
+- Wetterbedingungen
+- beobachtetem Nahrungsangebot
+- Fischaktivität
+- Zusammenhängen mit späteren Bissen und Fängen
+- Köder- und Technikperformance bei bestimmten Beobachtungen
+
+Beispiel: Fishing OS kann später prüfen, ob an Tagen mit beobachteter Fischbrut bestimmte Ködertypen häufiger Kontakte oder Fänge erzeugt haben. Korrelation wird dabei nicht automatisch als Ursache dargestellt.
+
+Minimaler Workflow: **Beobachtung öffnen → Speichern → weiterangeln.** Alle strukturierten Details, Notizen, Medien und Hypothesen können später ergänzt werden.
+
 ## Daten- und Analyseprinzip
 
-Die optionalen Detaildaten dürfen später für Gewässer-, Spot-, Köder-, Tackle- und Verhaltensanalysen verwendet werden. Fishing OS darf daraus nur dann Aussagen ableiten, wenn eine ausreichende Datenbasis vorhanden ist. Kleine Stichproben dürfen nicht als belastbare Erkenntnis dargestellt werden.
+Die optionalen Detaildaten dürfen später für Gewässer-, Spot-, Köder-, Tackle-, Ökosystem- und Verhaltensanalysen verwendet werden. Fishing OS darf daraus nur dann Aussagen ableiten, wenn eine ausreichende Datenbasis vorhanden ist. Kleine Stichproben dürfen nicht als belastbare Erkenntnis dargestellt werden.
