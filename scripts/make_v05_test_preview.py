@@ -9,4 +9,4 @@ out=out.replace('<title>Fishing OS 0.5</title>','<title>Fishing OS 0.5 Test</tit
 out=out.replace("if('serviceWorker' in navigator){","if(false&&'serviceWorker' in navigator){",1)
 Path('test.html').write_text(out)
 print('isolated test preview generated')
-# trigger build
+# refresh after integrity pass
