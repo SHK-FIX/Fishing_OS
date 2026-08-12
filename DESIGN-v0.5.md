@@ -14,6 +14,19 @@ Diese Datei hält die gemeinsam freigegebenen UI/UX-Entscheidungen für Fishing 
 - Karte und Angeltag sind zentrale Elemente der App.
 - Bestehende Funktionen und Datenlogik werden bei der visuellen Umsetzung nicht leichtfertig verändert.
 - Offline-first und private Spots bleiben unverändert Kernprinzipien.
+- Alle vom Nutzer erfassten Daten müssen nachträglich bearbeitbar sein.
+
+## UX-Grundregel für Schnellereignisse
+
+Für Biss, Im Drill verloren, Nachläufer, Beobachtung und Köderverlust gilt:
+
+- Alles, was nicht automatisch ermittelt werden kann, ist optional.
+- Kein Detailfeld darf den Nutzer am Wasser am schnellen Speichern hindern.
+- Automatisch vorbelegt werden, soweit verfügbar: Datum, Uhrzeit, aktiver Angeltag, Gewässer, aktueller Spot, GPS und Wetter-Snapshot.
+- Fischart, Köder/Setup, Technik, Tiefe, Biss-/Ereignisdetails, Foto, Notiz und weitere Zusatzinformationen können sofort oder später ergänzt werden.
+- Minimalziel: Schnellereignis öffnen → Speichern → sofort weiterangeln.
+- Alle Angaben bleiben nachträglich vollständig bearbeitbar.
+- Automatisch erfasste Originaldaten sollen bei späteren Korrekturen nachvollziehbar bleiben, damit Analysen nicht unbemerkt verfälscht werden.
 
 ## Dashboard – freigegebene Struktur
 
@@ -67,6 +80,37 @@ Reihenfolge:
 11. Großer „Fang speichern“-Button.
 
 Wetter ist bewusst weit oben, weil die manuelle Aktualisierung sich in der Praxis bewährt hat und nicht versteckt werden darf.
+
+## Biss erfassen – freigegeben
+
+Der helle iPhone-Entwurf ist freigegeben.
+
+Struktur:
+- Wetter-Snapshot oben, inklusive manuellem „Wetter aktualisieren“.
+- Gewässer und Spot.
+- Datum und Uhrzeit automatisch vorbelegt, aber korrigierbar.
+- Fischart optional.
+- Bissdetails optional.
+- Köder oder komplettes Tackle-Setup optional auswählbar.
+- Notiz und Foto optional.
+- großer Speichern-Button.
+
+### Bissart
+
+Optionaler Ein-Tap-Wert für spätere Analyse, z. B.:
+- hart / eindeutig,
+- vorsichtig,
+- kurzer Kontakt,
+- Fehlbiss,
+- unbekannt.
+
+Die Bissart ist niemals Pflicht.
+
+### Minimaler Biss-Workflow
+
+Im Extremfall genügt: **Biss öffnen → Speichern → weiterangeln.**
+
+Wenn Zeit vorhanden ist, können Gewässer/Spot, Köder/Setup, Fischart, Bissart, Tiefe, Foto und Notiz sofort ergänzt werden. Andernfalls erfolgt die Nachbearbeitung später.
 
 ## Aktiver Angeltag – freigegeben
 
@@ -191,7 +235,6 @@ Keine Scheingenauigkeit: Aussagen müssen immer mit ausreichender Datenbasis und
 ## Noch nicht final entworfen
 
 Diese Bereiche werden erst nach diesem Design-Freeze weiter bearbeitet:
-- Biss erfassen,
 - Im Drill verloren erfassen,
 - Nachläufer erfassen,
 - Beobachtung erfassen,
