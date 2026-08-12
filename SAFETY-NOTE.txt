@@ -1,0 +1,1 @@
+Fishing OS v0.5 development branch. Do not merge to main until field-tested and data integrity has been verified.
