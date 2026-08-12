@@ -1,0 +1,32 @@
+name: Apply v0.5 editing
+on:
+  push:
+    branches: [update/v0.5-workflow]
+    paths: [scripts/apply_v05_editing.py]
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: update/v0.5-workflow
+      - name: Apply guarded patch
+        run: python3 scripts/apply_v05_editing.py
+      - name: Sanity checks
+        run: |
+          grep -q "function dayEditForm" index.html
+          grep -q "function spotSessionEditForm" index.html
+          grep -q "antippen zum Korrigieren" index.html
+      - name: Commit only if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Add safe editing for days and spot sessions"
+            git push origin update/v0.5-workflow
+          fi
