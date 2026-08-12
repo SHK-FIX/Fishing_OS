@@ -30,3 +30,4 @@ one(old_day,new_day,'day water guard')
 one("const APP_VERSION='0.5.0-dev2';","const APP_VERSION='0.5.0-dev3';",'version')
 p.write_text(s)
 print('v0.5 integrity patch applied')
+# trigger: 2026-08-12 pre-release integrity pass
