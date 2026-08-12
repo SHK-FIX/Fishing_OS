@@ -53,22 +53,12 @@ Struktur:
 
 ### Optionale Verlustdetails
 
-- Verlustphase:
-  - direkt nach dem Biss
-  - während des Drills
-  - kurz vor dem Landen
+- Verlustphase: direkt nach dem Biss / während des Drills / kurz vor dem Landen
 - ungefähre Drilldauer
 - geschätzte Fischgröße
-- Verlustgrund:
-  - ausgeschlitzt
-  - Schnurbruch
-  - Haken aufgebogen
-  - Hindernis / Struktur
-  - ausgestiegen
-  - fehlgehakt / schlechter Hakensitz
-  - unbekannt
+- Verlustgrund: ausgeschlitzt / Schnurbruch / Haken aufgebogen / Hindernis oder Struktur / ausgestiegen / fehlgehakt oder schlechter Hakensitz / unbekannt
 
-Alle Angaben sind optional und dienen ausschließlich der späteren Analyse. Der Nutzer darf das Ereignis jederzeit mit einem einzigen schnellen Speichervorgang sichern und später ergänzen.
+Alle Angaben sind optional und dienen ausschließlich der späteren Analyse.
 
 ## Nachläufer erfassen – freigegeben
 
@@ -76,69 +66,27 @@ Der helle iPhone-Entwurf ist freigegeben.
 
 Ziel: Nachläufer in wenigen Sekunden sichern, damit Aktivität und Fischverhalten auch ohne Biss oder Fang analysiert werden können.
 
-Automatisch, soweit verfügbar:
-- Wetter-Snapshot mit manuellem Aktualisieren
-- aktiver Angeltag
-- Gewässer
-- aktueller Spot
-- Datum und Uhrzeit
-- GPS
+Automatisch, soweit verfügbar: Wetter-Snapshot, aktiver Angeltag, Gewässer, aktueller Spot, Datum/Uhrzeit und GPS.
 
-Optional:
-- Fischart
-- Köder oder komplettes Tackle-Setup
-- Verhalten des Fisches
-- Reaktion auf Köder / Führung
-- Distanz bis zum Abbruch
-- Notiz
-- Foto
+Optional: Fischart, Köder oder komplettes Tackle-Setup, Verhalten des Fisches, Reaktion auf Köder/Führung, Distanz bis zum Abbruch, Notiz und Foto.
 
-### Optionales Verhalten des Fisches
+Verhalten: Neugier/Interesse, verfolgt, kurz vor dem Biss, dreht ab, Köder leicht berührt, unbekannt.
 
-- Neugier / Interesse gezeigt
-- verfolgt
-- kurz vor dem Biss
-- dreht ab
-- Köder leicht berührt, aber nicht gebissen
-- unbekannt
+Reaktion: positiv / keine erkennbare Reaktion / negativ / unbekannt.
 
-### Optionale Reaktion auf Köder / Führung
+Distanz: unter 1 m / 1–3 m / 3–10 m / 10–20 m / über 20 m / unbekannt.
 
-- positive Reaktion: Interesse / Beschleunigung nimmt zu
-- keine erkennbare Reaktion
-- negative Reaktion: Fisch entfernt sich / wirkt scheu
-- unbekannt
-
-### Optionale Distanz bis zum Abbruch
-
-- sehr nah: unter 1 m
-- nah: 1–3 m
-- mittel: 3–10 m
-- weit: 10–20 m
-- sehr weit: über 20 m
-- unbekannt
-
-Minimaler Workflow: **Nachläufer öffnen → Speichern → weiterangeln.** Alle Details können später ergänzt oder korrigiert werden.
+Minimaler Workflow: **Nachläufer öffnen → Speichern → weiterangeln.**
 
 ## Beobachtung erfassen – freigegeben
 
 Der helle, wissenschaftlich orientierte iPhone-Entwurf ist freigegeben.
 
-Beobachtungen sind in Fishing OS keine bloßen Tagebuchnotizen, sondern strukturierte Feldbeobachtungen. Ziel ist, ökologische, biologische und situative Informationen so zu erfassen, dass sie später statistisch ausgewertet und im Gewässer-Labor mit Hypothesen verknüpft werden können.
+Beobachtungen sind strukturierte Feldbeobachtungen und können später statistisch ausgewertet sowie mit Hypothesen im Gewässer-Labor verknüpft werden.
 
-### Automatisch erfasst, soweit verfügbar
+Automatisch, soweit verfügbar: Wetter-Snapshot, aktiver Angeltag, Gewässer, aktueller Spot, Datum/Uhrzeit und GPS.
 
-- Wetter-Snapshot inklusive manuellem „Wetter aktualisieren“
-- aktiver Angeltag
-- Gewässer
-- aktueller Spot
-- Datum und Uhrzeit
-- GPS
-
-### Beobachtungskategorien
-
-Vorgefertigte Kategorien sorgen für konsistente und statistisch auswertbare Daten. Mehrfachauswahl ist möglich:
-
+Vorgefertigte Kategorien mit Mehrfachauswahl:
 - Fischaktivität
 - Beute / Nahrungsangebot
 - Wasser
@@ -148,102 +96,105 @@ Vorgefertigte Kategorien sorgen für konsistente und statistisch auswertbare Dat
 - Wetteränderung
 - Sonstiges
 
-Freitext bleibt zusätzlich möglich, ersetzt aber nicht die strukturierten Kategorien.
+Beute/Nahrungsangebot ist ausdrücklich vorgesehen. Auswahl u. a.: Beutefische/Fischbrut, Krebse, Frösche/Kaulquappen, Echsen, Insekten, Würmer/Wirbellose, sonstige Beute.
 
-### Beute / Nahrungsangebot
+Optionale strukturierte Attribute: Menge/Intensität, Position/Bereich, Verhalten/Aktivität, Fischart, Tiefe, Bewegungsrichtung, Wasserzustand, Vegetation/Struktur, Störung/Angeldruck.
 
-Diese Kategorie ist ausdrücklich vorgesehen, weil sichtbares Nahrungsangebot für Köderwahl, Fischstandort und Verhaltensanalyse relevant sein kann.
+Fishing OS trennt Beobachtung und Hypothese ausdrücklich. Optional kann eine Beobachtung über **„Als Hypothese ins Gewässer-Labor übernehmen“** in eine bewusst formulierte Hypothese überführt werden.
 
-Vorgefertigte Auswahl, erweiterbar:
-- Beutefische / Fischbrut
-- Krebse
-- Frösche / Kaulquappen
-- Echsen
-- Insekten
-- Würmer / Wirbellose
-- sonstige Beute
+Bedeutung vermutet: Nahrungsangebot / Fischstandort / Aktivität / Köderwahl / Wetterreaktion / unbekannt.
 
-Zusätzliche optionale Attribute:
-- Menge / Intensität: einzeln, wenige, mehrere, viele, sehr viele
-- Position / Bereich: Oberfläche, Uferkante, Flachwasser, mittlere Tiefe, Tiefwasser, im Kraut, an Struktur, offenes Wasser, sonstiges
-- Verhalten / Aktivität: ruhig, aktiv, flüchtend, springend, Jagdverhalten, Laichverhalten, sonstiges
+Medien: mehrere Fotos und Videos pro Beobachtung möglich; später ergänzbar und bearbeitbar. Offline-first und Speicherbedarf müssen bei Videos berücksichtigt werden.
 
-### Weitere Beobachtungsdetails
+Statistik kann Häufigkeit, Saison, Gewässer/Spot, Tageszeit, Wetter, Nahrungsangebot, Fischaktivität und Zusammenhänge mit Bissen/Fängen sowie Köder-/Technikperformance auswerten. Korrelation wird nicht als Ursache dargestellt.
 
-Je nach Kategorie können strukturierte Detailwerte ergänzt werden, beispielsweise:
-- Fischart
-- Menge / Intensität
-- Position / Tiefe / Bereich
-- Bewegungsrichtung
-- Verhalten
-- Reaktion auf Köder oder Angler
-- Wasserstand / Wassertrübung / auffällige Veränderungen
-- Vegetation und Struktur
-- Störung / Angeldruck
+Minimaler Workflow: **Beobachtung öffnen → Speichern → weiterangeln.**
 
-Alle Detailfelder bleiben optional und vollständig nachbearbeitbar.
+## Köderverlust erfassen – freigegeben
 
-### Notiz und wissenschaftliche Trennung
+Der helle iPhone-Entwurf ist freigegeben. Die im visuellen Entwurf versehentlich als erforderlich dargestellte Verlustart wird in der echten Umsetzung **nicht verpflichtend** sein.
 
-Freie Notizen sind möglich. Fishing OS trennt dabei ausdrücklich zwischen **Beobachtung** und **Hypothese**.
+### Automatisch erfasst, soweit verfügbar
 
-Beispiel:
-- Beobachtung: „Mehrere kleine Echsen regelmäßig direkt an der Uferkante gesehen.“
-- Hypothese: „Schwarzbarsche könnten an diesem Bereich regelmäßig Echsen als Beute nutzen.“
+- Wetter-Snapshot inklusive manuellem „Wetter aktualisieren“
+- aktiver Angeltag
+- Gewässer
+- aktueller Spot
+- Datum und Uhrzeit
+- GPS-Position des Anglers
 
-Eine Beobachtung darf niemals automatisch als Beweis für eine Hypothese behandelt werden.
+### Optional
 
-### Bedeutung vermutet
+- verlorener Köder
+- verwendetes Rig bzw. komplettes Tackle-Setup
+- Verlustart
+- Struktur / vermutete Ursache
+- Entfernungsklasse
+- Schnur / Vorfach bzw. verwendete Komponenten
+- Wassertiefe, falls bekannt oder geschätzt
+- Wurf / Führung
+- Notiz
+- Foto / Video
 
-Optional kann markiert werden, warum die Beobachtung interessant sein könnte:
-- Nahrungsangebot
-- Fischstandort
-- Aktivität
-- Köderwahl
-- Wetterreaktion
+### Verlustart
+
+Vorgefertigte Auswahl, aber vollständig optional:
+- Hänger
+- Abriss
+- im Drill verloren
+- sonstiger Verlust
 - unbekannt
 
-### Gewässer-Labor
+Ein Köderverlust darf also auch ohne Auswahl einer Verlustart sofort gespeichert und später ergänzt werden.
 
-Optionaler Schalter: **„Als Hypothese ins Gewässer-Labor übernehmen“**.
+### Struktur / vermutete Ursache
 
-Aus einer Beobachtung kann damit bewusst eine Hypothese angelegt werden. Zukünftige Beobachtungen, Fänge, Bisse, Drillverluste und Nachläufer können später als Datenbasis zur Einordnung dienen.
+Optional, insbesondere bei Hängern:
+- Felsen / Steine
+- Totholz / Äste
+- Kraut / Pflanzen
+- Unterwasserstruktur
+- Pfosten / Steg
+- sonstiges
+- unbekannt
 
-Mögliche Einordnung:
-- spricht dafür
-- neutral
-- spricht eher dagegen
-- noch zu wenig Daten
+### Entfernungsklasse
 
-Keine Scheingenauigkeit: Stichprobengröße und Datenqualität müssen bei jeder späteren Aussage berücksichtigt werden.
+Da die GPS-Position des Anglers nicht der exakten Position des verlorenen Köders entspricht, kann optional nur eine grobe Entfernungsklasse erfasst werden:
+- sehr nah: unter 5 m
+- nah: 5–20 m
+- mittel: 20–40 m
+- weit: 40–70 m
+- sehr weit: über 70 m
+- unbekannt
 
-### Medien
+### Karten- und GPS-Regel
 
-Beobachtungen unterstützen:
-- Fotos
-- Videos
-- mehrere Medien pro Beobachtung
+Fishing OS darf einen Köderverlust **nicht als vermeintlich exakten Verlustpunkt auf der Karte darstellen**. Gespeichert wird die tatsächliche GPS-Position des Anglers zum Ereigniszeitpunkt sowie die optionale Entfernungsklasse. Der Verlust wird statistisch dem Spot bzw. Bereich zugeordnet.
 
-Medien können sofort oder später ergänzt, entfernt oder geändert werden. Video ist insbesondere für Fischverhalten, Beutefischschwärme, Tierverhalten, Wasserbewegung und andere dynamische Beobachtungen vorgesehen.
+Grund: Bei Würfen über mehrere Dutzend Meter wäre ein Marker an der Anglerposition eine falsche Präzision und könnte später zu fehlerhaften Rückschlüssen führen.
 
-Wegen Offline-first und Speicherbedarf muss die spätere Implementierung Videos speichereffizient behandeln und unnötige Dateiduplikate vermeiden.
+Es ist keine spätere Köderbergungs-/„geborgen“-Funktion vorgesehen.
+
+### Verbindung zum Tackle-System
+
+Wenn der verlorene Köder, das Rig oder Setup ausgewählt wurde, kann Fishing OS die verwendeten Komponenten als Ereignis-Momentaufnahme referenzieren. Spätere Änderungen am Tackle-Katalog dürfen historische Köderverlustdaten nicht rückwirkend verfälschen.
 
 ### Statistik und Analyse
 
-Strukturierte Beobachtungen können später u. a. ausgewertet werden nach:
-- Häufigkeit bestimmter Beobachtungen
-- Saison / Jahreszeit
-- Gewässer und Spot
-- Tageszeit
-- Wetterbedingungen
-- beobachtetem Nahrungsangebot
-- Fischaktivität
-- Zusammenhängen mit späteren Bissen und Fängen
-- Köder- und Technikperformance bei bestimmten Beobachtungen
+Später auswertbar:
+- Verluste pro Gewässer und Spot
+- Verlustquote pro Köder / Ködertyp
+- Verlustquote pro Rig / Haken / Setup
+- Verlustarten im Vergleich
+- häufige Hängerstrukturen
+- Verhältnis von Fängen bzw. Fischkontakten zu Köderverlusten
+- besonders erfolgreiche, aber tackle-riskante Spots
+- Veränderungen über Zeit und Wasserstände, sofern ausreichend Daten vorliegen
 
-Beispiel: Fishing OS kann später prüfen, ob an Tagen mit beobachteter Fischbrut bestimmte Ködertypen häufiger Kontakte oder Fänge erzeugt haben. Korrelation wird dabei nicht automatisch als Ursache dargestellt.
+Fishing OS darf auch hier keine Scheingenauigkeit erzeugen; kleine Stichproben werden entsprechend gekennzeichnet.
 
-Minimaler Workflow: **Beobachtung öffnen → Speichern → weiterangeln.** Alle strukturierten Details, Notizen, Medien und Hypothesen können später ergänzt werden.
+Minimaler Workflow: **Köderverlust öffnen → Speichern → weiterangeln.** Sämtliche Details können später ergänzt oder korrigiert werden.
 
 ## Daten- und Analyseprinzip
 
