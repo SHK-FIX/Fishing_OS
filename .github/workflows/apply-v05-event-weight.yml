@@ -1,0 +1,33 @@
+name: Apply v0.5 event weight
+on:
+  push:
+    branches: [update/v0.5-workflow]
+    paths: [scripts/apply_v05_event_weight.py]
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: update/v0.5-workflow
+      - name: Apply guarded patch
+        run: python3 scripts/apply_v05_event_weight.py
+      - name: Sanity checks
+        run: |
+          grep -q "function weightMetric" index.html
+          grep -q "weightLb" index.html
+          grep -q "weightKg" index.html
+          grep -q "Gewicht lbs" index.html
+      - name: Commit only if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Add catch weight and safer event editing"
+            git push origin update/v0.5-workflow
+          fi
