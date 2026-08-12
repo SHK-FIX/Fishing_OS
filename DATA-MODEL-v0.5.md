@@ -58,7 +58,7 @@ Enthält mindestens:
 - ursprüngliche Zeitzone
 - waterSessionId
 - spotVisitId optional
-- spotId optional
+- spotId
 - GPS optional
 - weatherSnapshotId optional
 - Medienreferenzen
@@ -76,14 +76,19 @@ Damit bleibt ein Fang von 20:30 Uhr auf Gran Canaria auch später in Berlin als 
 
 ## Spot bei Schnellerfassung
 
-Kein manuell angelegter Spot ist Pflicht.
+Für Live-Schnellerfassung gehört jedes Ereignis zu einem Spot. **Ein bereits vorher angelegter Spot ist dafür aber ausdrücklich keine Voraussetzung.**
 
-Wenn ein Ereignis ohne vorhandenen Spot gespeichert wird:
-- kann die aktuelle GPS-Position als Ereignisposition gespeichert werden, sofern verfügbar
-- kann optional direkt ein neuer Spot aus dieser Position erzeugt werden
-- alternativ bleibt das Ereignis nur der WaterSession / dem Gewässer zugeordnet
+Wenn gerade kein Spot existiert oder aktiv ist, bietet Fishing OS direkt im Ereignis-Workflow eine Sofortlösung:
+- „Spot hier anlegen“ mit aktueller GPS-Position, sofern verfügbar
+- automatischer Name / nächste Spotnummer
+- keine weiteren Pflichtfelder
+- Ereignis wird danach sofort diesem Spot zugeordnet
 
-Die UI darf den Nutzer nicht zwingen, vor einem Fang erst einen Spot-Stammdatensatz anzulegen.
+Wenn GPS gerade nicht verfügbar ist, kann trotzdem ein neuer Spot ohne präzise Koordinaten angelegt und später ergänzt bzw. korrigiert werden.
+
+Der Nutzer muss einen Fang niemals abbrechen oder die Ereignismaske verlassen, nur weil vorher noch kein Spot angelegt wurde.
+
+Historische Fänge bleiben eine Ausnahme: Dort kann die Standortgenauigkeit ausdrücklich nur „Gewässer bekannt“, „ungefährer Bereich“ oder „Ort unbekannt“ sein.
 
 ## Stammdaten vs. historische Momentaufnahme
 
@@ -107,4 +112,4 @@ Stabile UUIDs und Beziehungen sind Grundlage für `IMPORT-EXPORT-BACKUP-v0.5.md`
 
 ## Produktregel
 
-**Ein Angeltag kann mehrere Gewässer enthalten. Ein Gewässerabschnitt kann mehrere Spots enthalten. Zwischen Spots darf kein Spot aktiv sein. Ereignisse dürfen auch ohne vorher angelegten Spot gespeichert werden.**
+**Ein Angeltag kann mehrere Gewässer enthalten. Ein Gewässerabschnitt kann mehrere Spots enthalten. Zwischen Spots darf kein Spot aktiv sein. Bei einer Live-Schnellerfassung wird ein fehlender Spot direkt in der Ereignismaske mit minimalem Aufwand angelegt.**
