@@ -1,0 +1,32 @@
+name: Make v0.5 test preview
+on:
+  push:
+    branches: [update/v0.5-workflow]
+    paths: [scripts/make_v05_test_preview.py]
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: update/v0.5-workflow
+      - name: Generate isolated preview
+        run: python3 scripts/make_v05_test_preview.py
+      - name: Sanity checks
+        run: |
+          grep -q "Fishing OS 0.5 Test" test.html
+          grep -q "fishingOS-v050-test" test.html
+          grep -q "false&&'serviceWorker'" test.html
+      - name: Commit preview
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add test.html
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Generate isolated v0.5 test preview"
+            git push origin update/v0.5-workflow
+          fi
