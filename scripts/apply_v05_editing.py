@@ -9,3 +9,4 @@ for old,new in repls:
     s=s.replace(old,new)
 p.write_text(s)
 print('v0.5 editing patch applied')
+# trigger: 2026-08-12
