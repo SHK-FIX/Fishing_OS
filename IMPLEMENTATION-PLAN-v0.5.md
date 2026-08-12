@@ -3,6 +3,14 @@
 Stand: 13.08.2026
 Status: Start der Umsetzungsphase
 
+## Architekturentscheidung
+
+Fishing OS v0.5 wird als **PWA** umgesetzt.
+
+SwiftUI / Native ist ausdrücklich zurückgestellt und wird erst geprüft, wenn die PWA bei realer Nutzung an eine wesentliche technische Grenze stößt.
+
+Aktive Architektur: `PWA-ARCHITECTURE-v0.5.md`
+
 ## Phase 0 – Schutz der bestehenden Daten
 
 - v0.4 bleibt unangetastete Referenz
@@ -12,18 +20,24 @@ Status: Start der Umsetzungsphase
 
 Abnahmekriterium: vorhandene Testdaten können jederzeit wiederhergestellt werden.
 
-## Phase 1 – Native Basis
+## Phase 1 – PWA-Basis stabilisieren und modularisieren
 
-- Xcode-/SwiftUI-App anlegen
-- Tab-Navigation gemäß `NAVIGATION-v0.5.md`
+- bestehende PWA als Ausgangspunkt verwenden
+- App-Shell / Navigation gemäß `NAVIGATION-v0.5.md`
 - helles Designsystem / Abstände / Karten / Buttons
 - App-Icon / Fishing-OS-Branding integrieren
-- lokale Persistenz initialisieren
+- Service Worker prüfen und versionieren
+- bestehende monolithische Struktur schrittweise modularisieren
 - zentrale Fehler-/Logging-Struktur
 
-Abnahmekriterium: App startet stabil auf iPhone, Navigation funktioniert, lokale Daten bleiben nach Neustart erhalten.
+Abnahmekriterium: App startet stabil als Home-Screen-PWA, Navigation funktioniert online und offline, bestehende Daten bleiben erhalten.
 
-## Phase 2 – Kerndatenmodell
+## Phase 2 – Lokale Datenbank / Kerndatenmodell
+
+- IndexedDB-Datenzugriffsschicht aufbauen
+- versioniertes Schema
+- stabile UUIDs
+- Migration aus bestehender v0.4-Datenstruktur
 
 Umsetzen:
 - Water
@@ -42,18 +56,18 @@ Tests:
 - Übergangszeit ohne Spot
 - Ereignis an Spot
 - Ereignis mit direkt neu angelegtem Minimal-Spot
-- Wiederherstellung nach App-Neustart
+- Wiederherstellung nach App-/Browser-Neustart
 
 ## Phase 3 – Migration v0.4 → v0.5
 
-- v0.4-Exportdatei lesen
+- bestehende v0.4-Daten lesen
 - Gewässer / Spots / Ereignisse übernehmen
 - alte Angeltagstruktur in FishingDay + WaterSessions übersetzen
 - historische Unsicherheiten erhalten
 - Importbericht
 - Sicherheitsbackup vor Migration
 
-Abnahmekriterium: bestehende Testdaten erscheinen vollständig und korrekt in der nativen App.
+Abnahmekriterium: vorhandene Testdaten erscheinen vollständig und korrekt in v0.5.
 
 ## Phase 4 – Live-Modus
 
@@ -62,12 +76,10 @@ Abnahmekriterium: bestehende Testdaten erscheinen vollständig und korrekt in de
 - Spot starten/beenden
 - Phase ohne aktiven Spot
 - Laufzeiten
-- Wiederherstellung nach App-Unterbrechung
+- Wiederherstellung nach PWA-Neustart / Reload
 - Angeltag beenden
 
 Keine Tackle-Pflicht im Live-Modus.
-
-Abnahmekriterium: kompletter realer Angeltag lässt sich mit minimaler Bedienung dokumentieren.
 
 ## Phase 5 – Schnellereignisse
 
@@ -88,7 +100,7 @@ Globale Regel:
 
 ## Phase 6 – Wetter
 
-- WeatherService
+- Web-Wetterservice anbinden
 - Snapshot beim Session-/Spotstart
 - manueller Refresh
 - Offline-Status
@@ -97,17 +109,17 @@ Globale Regel:
 
 ## Phase 7 – Karte & Spots
 
-- Apple Maps / MapKit
-- eigener Standort
+- PWA-taugliche Kartenlösung
+- eigener Standort via Browser-Geolocation
 - Gewässer / Spots
-- Satellit / Hybrid / Karte
+- Satellit / Hybrid / Karte soweit verfügbar
 - Spot-Bottom-Sheet
 - Spot schnell anlegen
 - aktiver Spot
 - Clustering
-- Navigation
+- Navigation / externe Kartenübergabe, soweit sinnvoll
 
-Offline-Kartenumfang wird anhand realer MapKit-Möglichkeiten separat getestet; lokale Spotdaten funktionieren unabhängig davon offline.
+Offline-Kartenumfang wird separat getestet. Lokale Spotdaten funktionieren unabhängig vom Kartenhintergrund offline.
 
 ## Phase 8 – Gewässer & Fangarchive
 
@@ -132,13 +144,15 @@ Offline-Kartenumfang wird anhand realer MapKit-Möglichkeiten separat getestet; 
 
 ## Phase 10 – Medien
 
-- Fotos aufnehmen / auswählen
+- Kamera-/Dateiauswahl in iOS-PWA
 - mehrere Fotos
-- Videos bei Beobachtungen/Spots
+- Videos bei Beobachtungen/Spots soweit praktikabel
 - Vollbildansicht
 - Medienverwaltung
 - Speicherverhalten
 - Backupintegration
+
+Fallback bei fehlenden Kamera-Spezialfunktionen: Aufnahme in der iPhone-Kamera und anschließender Import aus der Mediathek.
 
 ## Phase 11 – Statistik / Analyse / Labor
 
@@ -157,25 +171,31 @@ Analyse erst nach stabiler Rohdatenerfassung implementieren.
 
 - zentraler Papierkorb
 - Wiederherstellung inklusive Beziehungen
-- `.fosbackup`
-- vollständiges Backup inkl. Medien
+- versionsfähiges Fishing-OS-Backup
+- vollständiges Backup inkl. Medien soweit technisch sinnvoll
 - Importvalidierung
 - Konflikte / Dubletten
 - Schema-Migration
 
-## Phase 13 – Feldtest
+## Phase 13 – PWA-Feldtest
 
 Pflichttests auf echtem iPhone:
+- PWA vom Home-Bildschirm
+- mehrere Tage ohne Neuinstallation
 - Angeltag ohne Netz
 - Angeltag mit mehreren Gewässern
 - mehrere Spotwechsel + Wegzeiten
 - Fang ohne vorher angelegten Spot
 - Wetter manuell aktualisieren
-- App während Session beenden / erneut öffnen
-- Fotos bei schlechtem Licht
+- PWA schließen / erneut öffnen während laufender Session
+- Fotos bei schlechtem Licht + Mediathek-Fallback
 - Import/Export
 - Papierkorb/Wiederherstellung
 - sehr viele Spots
+
+## Native-Eskalationskriterium
+
+Erst wenn ein wesentlicher, real getesteter PWA-Mangel nicht vernünftig lösbar ist, wird SwiftUI erneut bewertet.
 
 ## Freigaberegel
 
@@ -183,4 +203,4 @@ Erst wenn Datenintegrität, Migration, Backup und Live-Workflow im Feldtest stab
 
 ## Startpunkt
 
-**Jetzt beginnen wir mit Phase 1 und 2: native Basis + Kerndatenmodell.**
+**Jetzt beginnen wir mit Phase 1 und 2: PWA-Basis + lokale Datenbank / Kerndatenmodell.**
