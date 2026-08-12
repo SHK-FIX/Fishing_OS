@@ -1,14 +1,22 @@
 # Fishing OS v0.5 – Design Freeze / Master-Index
 
 Stand: 13.08.2026
-Status: **FREIGEGEBEN / FEATURE FREEZE**
+Status: **FREIGEGEBEN / FEATURE FREEZE / PWA-FIRST**
 
 Diese Datei ist der zentrale Index der freigegebenen v0.5-Produkt- und UX-Entscheidungen. Detailregeln liegen in den verlinkten Spezifikationen und haben bei Konflikten Vorrang.
 
+## Architekturentscheidung
+
+Fishing OS v0.5 wird als installierbare **PWA für iPhone** umgesetzt.
+
+Aktive Architektur: `PWA-ARCHITECTURE-v0.5.md`.
+
+SwiftUI / Native ist ausdrücklich zurückgestellt. Eine native App wird erst wieder geprüft, wenn die PWA bei realer Nutzung an eine wesentliche technische Grenze stößt. Siehe `NATIVE-ARCHITECTURE-v0.5.md` nur als Zukunftsnotiz.
+
 ## Grundprinzipien
 
-- Zielplattform zuerst iPhone / SwiftUI.
-- v0.4/PWA bleibt stabile Referenz und Migrationsquelle, nicht langfristige Zielarchitektur.
+- Zielplattform zuerst iPhone / PWA.
+- v0.4/PWA bleibt stabile Referenz und direkte Ausgangsbasis.
 - helles, hochwertiges, Apple-inspiriertes Mobile-First-Design.
 - Offline-first.
 - private Spots / keine automatische Veröffentlichung.
@@ -17,6 +25,7 @@ Diese Datei ist der zentrale Index der freigegebenen v0.5-Produkt- und UX-Entsch
 - Schnellereignisse dürfen das Angeln nicht unterbrechen.
 - Vorschläge sind keine Fakten.
 - Statistik zeigt Muster ohne Scheingenauigkeit oder unbelegte Kausalität.
+- keine wiederkehrende 7-Tage-Neuinstallation als Voraussetzung für die private Nutzung.
 
 ## Dashboard / Übersicht
 
@@ -72,7 +81,7 @@ Grundsatz:
 
 ## Karte & Spots
 
-- Karte / Hybrid / Satellit
+- Karte / Hybrid / Satellit soweit in der gewählten PWA-Kartenlösung verfügbar
 - aktueller Standort sichtbar
 - kein permanentes Auto-Recenter
 - unbegrenzte Spots
@@ -155,6 +164,8 @@ Globale reversible Löschregel siehe `TRASH-RECOVERY-v0.5.md`.
 
 Finale Medien-/Kamera-Regeln siehe `MEDIA-CAMERA-v0.5.md`.
 
+PWA-Spezialregel: Falls bestimmte Funktionen der iPhone-Kamera innerhalb der Web-App nicht verfügbar sind, bleibt **Aufnahme in der iPhone-Kamera → anschließend aus der Mediathek importieren** ein vollständig akzeptierter Workflow.
+
 ## Einstellungen
 
 Minimalistische Hauptseite + tiefe Unterseiten siehe `SETTINGS-v0.5.md`.
@@ -171,7 +182,7 @@ Vollständige Backups erhalten stabile IDs, Beziehungen, Medien, Papierkorb und 
 
 Verbindliche Entity- und Zeitmodell-Grundlage siehe `DATA-MODEL-v0.5.md`.
 
-Zeitwerte werden mit iPhone-Zeit sowie ursprünglicher lokaler Zeitzone gespeichert.
+Zeitwerte werden mit iPhone-/Browserzeit sowie ursprünglicher lokaler Zeitzone gespeichert.
 
 ## Angeltag-Detail / Tagesbericht
 
@@ -184,17 +195,18 @@ Siehe `ANGLER-DAY-DETAIL-v0.5.md`.
 Ab diesem Stand gilt:
 - keine neuen Komfortfunktionen oder Feature-Ideen mehr für v0.5
 - neue Ideen wandern in einen späteren Backlog
-- Ausnahme nur bei einer echten Produkt-, Datenintegritäts-, Sicherheits- oder technischen Blockerlücke, die für die korrekte Umsetzung von v0.5 geschlossen werden muss
+- Ausnahme nur bei einer echten Produkt-, Datenintegritäts-, Sicherheits- oder technischen Blockerlücke
 - bestehende freigegebene Funktionen werden beim Implementieren nicht stillschweigend entfernt oder grundlegend verändert
 - technische Detailentscheidungen dürfen während der Umsetzung getroffen werden, solange sie die freigegebenen Produktregeln nicht verändern
 
 ## Nächster Schritt
 
-1. ältere Einzelspezifikationen gegen die finalen Vorrangregeln synchronisieren
-2. technische SwiftUI-/Persistenzarchitektur und Migration aus v0.4 vorbereiten
-3. MVP-Implementierungsreihenfolge festlegen
-4. implementieren
-5. auf echtem iPhone mit realen Angeltagen testen
-6. erst nach Datenintegritäts-, Import-/Export- und Feldtest Freigabe nach `main`
+1. bestehende PWA sichern und Datenbestand prüfen
+2. PWA-Struktur modularisieren, ohne funktionierende v0.4-Daten zu zerstören
+3. IndexedDB-/Migrationsschicht für v0.5 aufbauen
+4. Live-Modus und Schnellereignisse auf das neue Datenmodell umstellen
+5. Archive, Karte, Medien, Tackle und Analyse schrittweise ergänzen
+6. auf echtem iPhone mit realen Angeltagen testen
+7. erst nach Datenintegritäts-, Import-/Export- und Feldtest Freigabe nach `main`
 
-**Planungsphase beendet. Ab jetzt wird gebaut.**
+**Planungsphase beendet. PWA wird gebaut. SwiftUI wartet auf einen echten Grund.**
