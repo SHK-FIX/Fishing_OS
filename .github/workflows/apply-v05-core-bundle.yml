@@ -1,0 +1,34 @@
+name: Apply v0.5 core bundle
+on:
+  push:
+    branches: [update/v0.5-workflow]
+    paths: [scripts/apply_v05_core_bundle.py]
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: update/v0.5-workflow
+      - name: Apply guarded core bundle
+        run: python3 scripts/apply_v05_core_bundle.py
+      - name: Sanity checks
+        run: |
+          grep -q "Fishing OS 0.5" index.html
+          grep -q "Köderverlust" index.html
+          grep -q "Zu meinem Standort" index.html
+          grep -q "Schwerster Fang" index.html
+          grep -q "0.5.0-dev2" index.html
+      - name: Commit only if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Add location, lure loss and weight statistics"
+            git push origin update/v0.5-workflow
+          fi
