@@ -1,4 +1,4 @@
-const C='fishing-os-v0.5.0-alpha10';
+const C='fishing-os-v0.5.0-alpha11';
 const A=['./','./index.html','./app-v05.html','./manifest.json','./hotfix-alpha3.js','./hotfix-alpha9.js','./assets/icons/icon-180.png','./assets/icons/icon-192.png','./assets/icons/icon-512.png'];
 
 self.addEventListener('install',e=>e.waitUntil(
