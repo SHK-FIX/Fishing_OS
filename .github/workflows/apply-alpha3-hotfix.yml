@@ -1,0 +1,71 @@
+name: Apply v0.5 alpha3 hotfix
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'preview-v05/hotfix-alpha3.js'
+      - '.github/workflows/apply-alpha3-hotfix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-preview-and-canonical:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Wire preview hotfix
+        shell: bash
+        run: |
+          set -e
+          if ! grep -q 'hotfix-alpha3.js' preview-v05/index.html; then
+            python - <<'PY'
+          from pathlib import Path
+          p=Path('preview-v05/index.html')
+          s=p.read_text()
+          s=s.replace('</body>','<script src="./hotfix-alpha3.js?v=3"></script>\n</body>')
+          p.write_text(s)
+          PY
+          fi
+
+      - name: Commit preview wiring
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --quiet; then
+            git add preview-v05/index.html
+            git commit -m 'Load alpha3 hotfix in v0.5 preview'
+            git push origin main
+          fi
+
+      - name: Patch canonical update branch
+        shell: bash
+        run: |
+          set -e
+          git fetch origin update/v0.5-workflow
+          HOTFIX=$(mktemp)
+          git show origin/main:preview-v05/hotfix-alpha3.js > "$HOTFIX"
+          git checkout -B update/v0.5-workflow origin/update/v0.5-workflow
+          cp "$HOTFIX" hotfix-alpha3.js
+          if ! grep -q 'hotfix-alpha3.js' app-v05.html; then
+            python - <<'PY'
+          from pathlib import Path
+          p=Path('app-v05.html')
+          s=p.read_text()
+          s=s.replace('</body>','<script src="./hotfix-alpha3.js?v=3"></script>\n</body>')
+          p.write_text(s)
+          PY
+          fi
+          git add hotfix-alpha3.js app-v05.html
+          if ! git diff --cached --quiet; then
+            git commit -m 'Apply alpha3 quick-capture and journal hotfix'
+            git push origin update/v0.5-workflow
+          fi
