@@ -1,6 +1,7 @@
 /* Fishing OS v0.5 alpha8
    Resilient quick-entry binding for iPhone/PWA.
    Also binds the four dashboard metric cards in the deployed preview.
+   Photo inputs in event forms keep the native iPhone source chooser (camera + library).
 */
 (function(){
   async function launchQuick(type){
@@ -28,6 +29,13 @@
         ev.stopPropagation();
         launchQuick(btn.dataset.event);
       };
+    });
+  }
+
+  function enableNativePhotoChooser(root=document){
+    root.querySelectorAll?.('#eventForm input[type="file"][name="photo"]').forEach(input=>{
+      input.removeAttribute('capture');
+      input.setAttribute('accept','image/*');
     });
   }
 
@@ -69,6 +77,7 @@
   }
 
   bindQuickButtons();
+  enableNativePhotoChooser();
   cleanupStatisticChevrons();
   bindDashboardMetrics();
   const observer=new MutationObserver(muts=>{
@@ -76,6 +85,7 @@
       for(const n of m.addedNodes){
         if(n.nodeType===1){
           bindQuickButtons(n);
+          enableNativePhotoChooser(document);
           cleanupStatisticChevrons(document);
           bindDashboardMetrics(document);
         }
