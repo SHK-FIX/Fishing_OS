@@ -1,0 +1,47 @@
+name: Apply v0.5 alpha8
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'preview-v05/hotfix-alpha8.js'
+      - '.github/workflows/apply-alpha8.yml'
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wire alpha8
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('preview-v05/index.html')
+          s=p.read_text()
+          tag='<script src="./hotfix-alpha8.js?v=8"></script>'
+          if tag not in s:
+              s=s.replace('</body>', tag+'\n</body>')
+          p.write_text(s)
+
+          sw=Path('preview-v05/service-worker.js')
+          t=sw.read_text()
+          t=re.sub(r"const C='[^']+';", "const C='fishing-os-v0.5.0-alpha8';", t)
+          if "'./hotfix-alpha8.js'" not in t:
+              if "'./hotfix-alpha7.js'" in t:
+                  t=t.replace("'./hotfix-alpha7.js'", "'./hotfix-alpha7.js','./hotfix-alpha8.js'")
+              else:
+                  t=t.replace("'./index.html'", "'./index.html','./hotfix-alpha8.js'")
+          # Replace fetch handler with network-first for same-origin app shell, while retaining offline fallback.
+          start=t.find("self.addEventListener('fetch'")
+          if start!=-1:
+              t=t[:start]+"""self.addEventListener('fetch',e=>{\n if(e.request.method!=='GET')return;\n const u=new URL(e.request.url);\n const appAsset=u.origin===self.location.origin;\n const networkFirst=appAsset||u.hostname.includes('open-meteo.com')||u.hostname.includes('arcgisonline.com')||u.hostname.includes('openstreetmap.org')||u.hostname.includes('unpkg.com');\n if(networkFirst){e.respondWith(fetch(e.request).then(r=>{const x=r.clone();caches.open(C).then(c=>c.put(e.request,x));return r}).catch(()=>caches.match(e.request).then(r=>r||caches.match('./index.html'))));return}\n e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(x=>{const y=x.clone();caches.open(C).then(c=>c.put(e.request,y));return x})));\n});\n"""
+          sw.write_text(t)
+          PY
+      - name: Commit generated wiring
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add preview-v05/index.html preview-v05/service-worker.js
+          git diff --cached --quiet || git commit -m "Apply alpha8 resilient quick entries"
+          git push
