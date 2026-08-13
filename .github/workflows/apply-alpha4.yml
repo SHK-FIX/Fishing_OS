@@ -1,0 +1,39 @@
+name: Apply v0.5 alpha4
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/apply-alpha4.yml'
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wire alpha4 into preview
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('preview-v05/index.html')
+          s=p.read_text()
+          tag='<script src="./hotfix-alpha4.js?v=4"></script>'
+          if tag not in s:
+              s=s.replace('</body>', tag+'\n</body>')
+          p.write_text(s)
+          sw=Path('preview-v05/service-worker.js')
+          t=sw.read_text()
+          import re
+          t=re.sub(r"const C='[^']+';", "const C='fishing-os-v0.5.0-alpha4';", t)
+          if "'./hotfix-alpha4.js'" not in t:
+              t=t.replace("'./hotfix-alpha3.js'", "'./hotfix-alpha3.js','./hotfix-alpha4.js'") if "'./hotfix-alpha3.js'" in t else t.replace("'./index.html'", "'./index.html','./hotfix-alpha4.js'")
+          sw.write_text(t)
+          PY
+      - name: Commit preview wiring
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add preview-v05/index.html preview-v05/service-worker.js
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Load alpha4 equipment hotfix in preview'
+          git push
