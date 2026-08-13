@@ -1,6 +1,6 @@
 /* Fishing OS v0.5 alpha8
    Resilient quick-entry binding for iPhone/PWA.
-   Avoids stale button handlers after rerenders and keeps no-spot flow available.
+   Also binds the four dashboard metric cards in the deployed preview.
 */
 (function(){
   async function launchQuick(type){
@@ -31,10 +31,44 @@
     });
   }
 
+  async function renderSpotOverviewPreview(){
+    const [spots,waters]=await Promise.all([all('spots'),all('waters')]);
+    const sp=spots.filter(active);
+    $('#pageTitle').textContent='Spots';
+    $('#view').innerHTML=`<div class="section"><h2>Alle Spots</h2></div>${sp.map(s=>{const w=waters.find(x=>x.id===s.waterId);return `<button class="row" data-preview-spot="${s.id}"><div style="width:52px;height:52px;border-radius:14px;background:#edf2ef;display:grid;place-items:center;font-size:24px">📍</div><div class="grow"><h3>${esc(s.name||'Spot')}</h3><p>${esc(w?.name||'Ohne Gewässer')}${s.bottom?' · '+esc(s.bottom):''}</p></div><span class="chev">›</span></button>`}).join('')||'<div class="empty">Noch keine Spots.</div>'}`;
+    $$('[data-preview-spot]').forEach(b=>b.onclick=()=>{ state.tab='map'; render(); });
+  }
+
+  function bindDashboardMetrics(root=document){
+    const cards=root.querySelectorAll?.('.metrics .metric');
+    if(!cards || cards.length<4) return;
+    const go=[
+      ()=>switchTab('catches'),
+      ()=>switchTab('waters'),
+      ()=>renderSpotOverviewPreview(),
+      ()=>renderJournal()
+    ];
+    [...cards].slice(0,4).forEach((card,i)=>{
+      if(card.dataset.dashboardBound==='1') return;
+      card.dataset.dashboardBound='1';
+      card.setAttribute('role','button');
+      card.setAttribute('tabindex','0');
+      card.style.pointerEvents='auto';
+      card.style.cursor='pointer';
+      card.style.touchAction='manipulation';
+      if(!card.querySelector('.dashChev')) card.insertAdjacentHTML('beforeend','<span class="dashChev" aria-hidden="true" style="display:block;color:#a2aaa6;font-size:14px;line-height:10px;margin-top:3px">›</span>');
+      card.onclick=function(ev){ ev.preventDefault(); ev.stopPropagation(); go[i](); };
+      card.onkeydown=function(ev){ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); go[i](); } };
+    });
+  }
+
   bindQuickButtons();
+  bindDashboardMetrics();
   const observer=new MutationObserver(muts=>{
     for(const m of muts){
-      for(const n of m.addedNodes){ if(n.nodeType===1) bindQuickButtons(n); }
+      for(const n of m.addedNodes){
+        if(n.nodeType===1){ bindQuickButtons(n); bindDashboardMetrics(document); }
+      }
     }
   });
   observer.observe(document.body,{childList:true,subtree:true});
