@@ -1,5 +1,6 @@
 from pathlib import Path
 
+# alpha11: dashboard navigation lives in the main app, not in a late hotfix.
 app = Path('app-v05.html')
 s = app.read_text()
 
@@ -22,7 +23,6 @@ if bind_marker not in s:
     raise SystemExit('dashboard binding marker not found')
 s = s.replace(bind_marker, bind_new, 1)
 
-# Ensure buttons retain metric appearance and show touch feedback.
 css_marker = '.metric small{color:var(--muted);font-size:10px}'
 css_new = css_marker + '.metric{color:var(--ink);font:inherit;cursor:pointer;touch-action:manipulation}.metric:active{transform:scale(.97);background:#f4f7f5}.metric .chev{display:block;font-size:14px;line-height:10px;margin-top:3px}'
 if css_marker in s and '.metric .chev' not in s:
