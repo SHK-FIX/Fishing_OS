@@ -40,8 +40,10 @@
   }
 
   function bindDashboardMetrics(root=document){
-    const cards=root.querySelectorAll?.('.metrics .metric');
-    if(!cards || cards.length<4) return;
+    const metrics=root.querySelector?.('.metrics');
+    if(!metrics || metrics.classList.contains('statMetrics')) return;
+    const cards=metrics.querySelectorAll('.metric');
+    if(cards.length<4) return;
     const go=[
       ()=>switchTab('catches'),
       ()=>switchTab('waters'),
@@ -62,12 +64,21 @@
     });
   }
 
+  function cleanupStatisticChevrons(root=document){
+    root.querySelectorAll?.('.statMetrics .dashChev').forEach(el=>el.remove());
+  }
+
   bindQuickButtons();
+  cleanupStatisticChevrons();
   bindDashboardMetrics();
   const observer=new MutationObserver(muts=>{
     for(const m of muts){
       for(const n of m.addedNodes){
-        if(n.nodeType===1){ bindQuickButtons(n); bindDashboardMetrics(document); }
+        if(n.nodeType===1){
+          bindQuickButtons(n);
+          cleanupStatisticChevrons(document);
+          bindDashboardMetrics(document);
+        }
       }
     }
   });
