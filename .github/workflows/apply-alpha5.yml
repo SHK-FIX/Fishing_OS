@@ -1,0 +1,38 @@
+name: Apply v0.5 alpha5
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'preview-v05/hotfix-alpha5.js'
+      - '.github/workflows/apply-alpha5.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wire alpha5
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('preview-v05/index.html')
+          s=p.read_text()
+          tag='<script src="./hotfix-alpha5.js?v=5"></script>'
+          if tag not in s:
+              s=s.replace('</body>', tag+'\n</body>')
+          p.write_text(s)
+          sw=Path('preview-v05/service-worker.js')
+          t=sw.read_text()
+          t=t.replace("fishing-os-v0.5.0-alpha4","fishing-os-v0.5.0-alpha5")
+          if "'./hotfix-alpha5.js'" not in t:
+              t=t.replace("'./hotfix-alpha4.js',", "'./hotfix-alpha4.js','./hotfix-alpha5.js',")
+          sw.write_text(t)
+          PY
+      - name: Commit
+        run: |
+          git config user.name "SHK-FIX"
+          git config user.email "schuhmacher36@googlemail.com"
+          git add preview-v05/index.html preview-v05/service-worker.js
+          git diff --cached --quiet || git commit -m "Enable alpha5 equipment integration"
+          git push
