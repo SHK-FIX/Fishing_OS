@@ -1,5 +1,5 @@
-const C='fishing-os-v0.5.0-alpha6';
-const A=['./','./index.html','./hotfix-alpha4.js','./hotfix-alpha5.js','./hotfix-alpha6.js','./app-v05.html','./manifest.json','./assets/icons/icon-180.png','./assets/icons/icon-192.png','./assets/icons/icon-512.png'];
+const C='fishing-os-v0.5.0-alpha7';
+const A=['./','./index.html','./hotfix-alpha4.js','./hotfix-alpha5.js','./hotfix-alpha6.js','./hotfix-alpha7.js','./app-v05.html','./manifest.json','./assets/icons/icon-180.png','./assets/icons/icon-192.png','./assets/icons/icon-512.png'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(A)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',e=>{
