@@ -45,4 +45,11 @@
   const style=document.createElement('style');
   style.textContent=`.metrics .metric[role="button"]{transition:transform .08s ease,background .08s ease;padding-bottom:15px}.metrics .metric[role="button"]:active{transform:scale(.97);background:#f4f7f5}.alpha9chev{display:block;color:#a2aaa6;font-size:16px;line-height:12px;margin-top:3px}`;
   document.head.appendChild(style);
+
+  // The main app performs its first dashboard render before hotfix files load.
+  // Re-render once after installing this override so the current four metric
+  // cards receive their handlers immediately, including after a fresh reload.
+  Promise.resolve().then(()=>{
+    if(typeof state!=='undefined' && state.tab==='dashboard' && typeof render==='function') render();
+  });
 })();
