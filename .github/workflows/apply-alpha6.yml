@@ -1,0 +1,40 @@
+name: Apply v0.5 alpha6
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'preview-v05/hotfix-alpha6.js'
+      - '.github/workflows/apply-alpha6.yml'
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wire alpha6
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('preview-v05/index.html')
+          s=p.read_text()
+          tag='<script src="./hotfix-alpha6.js?v=6"></script>'
+          if tag not in s:
+              s=s.replace('</body>', tag+'\n</body>')
+          p.write_text(s)
+
+          sw=Path('preview-v05/service-worker.js')
+          t=sw.read_text()
+          import re
+          t=re.sub(r"const C='[^']+';", "const C='fishing-os-v0.5.0-alpha6';", t)
+          if "'./hotfix-alpha6.js'" not in t:
+              t=t.replace("'./hotfix-alpha5.js',", "'./hotfix-alpha5.js','./hotfix-alpha6.js',") if "'./hotfix-alpha5.js'," in t else t.replace("'./hotfix-alpha4.js',", "'./hotfix-alpha4.js','./hotfix-alpha6.js',")
+          sw.write_text(t)
+          PY
+      - name: Commit generated wiring
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add preview-v05/index.html preview-v05/service-worker.js
+          git diff --cached --quiet || git commit -m "Apply alpha6 journal timeline"
+          git push
