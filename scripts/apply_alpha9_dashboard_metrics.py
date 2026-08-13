@@ -9,3 +9,4 @@ if 'hotfix-alpha9.js' not in s:
     s=s.replace(needle,insert)
     p.write_text(s)
 print('alpha9 dashboard metrics installed')
+# workflow trigger
